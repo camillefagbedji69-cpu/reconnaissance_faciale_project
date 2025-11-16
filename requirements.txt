@@ -6,3 +6,4 @@ joblib
 mtcnn
 keras-facenet 
 tensorflow
+opencv-python-headless
