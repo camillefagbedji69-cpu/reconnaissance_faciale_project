@@ -19,7 +19,7 @@ model = load('model.joblib')
 uploaded_file = st.file_uploader("Télécharger une image", type = ['jpeg', 'jpg', 'png'])
 
 if uploaded_file is not None : 
-    image = Image.open(uploaded_file)
+    image = Image.open(uploaded_file).convert("RGB")
     # Sauvegarde dans un fichier temporaire
     temp_path = "temp.jpg"
     image.save(temp_path)
@@ -34,6 +34,7 @@ if uploaded_file is not None :
     with st.spinner('Prédiction en cours...'):
         prediction = model.predict(img_vector)
         st.success(f"La personne reconnue est : {prediction[0]}")
+
 
 
 
