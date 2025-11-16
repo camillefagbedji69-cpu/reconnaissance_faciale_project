@@ -3,6 +3,9 @@ import numpy as np
 from PIL import Image
 from joblib import load 
 
+##importation des fonctions 
+from Fonctions import get_embedding, extract_face
+
 ##Affichage du dashboard 
 
 st.title('Démo de reconnaissance faciale')
@@ -28,6 +31,7 @@ if uploaded_file is not None :
     with st.spinner('Prédiction en cours...'):
         prediction = model.predict(img_vector)
         st.success(f"La personne reconnue est : {prediction[0]}")
+
 
 
 
