@@ -21,14 +21,11 @@ if uploaded_file is not None :
 
 
     st.write("Traitement en cours....")
-
-    
     # prétraitement en vecteur compatible KNN
     img_array = np.array(image.resize((160, 160)))
     img_vector = img_array.flatten().reshape(1, -1)
 
     with st.spinner('Prédiction en cours...'):
         prediction = model.predict(img_vector)
-    
+        st.success(f"La personne reconnue est : {prediction[0]}")
 
-st.success(f"La personne reconnue est : {prediction[0]}")
