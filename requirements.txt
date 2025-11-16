@@ -3,3 +3,6 @@ numpy
 pillow
 scikit-learn
 joblib
+mtcnn
+keras-facenet 
+tensorflow
