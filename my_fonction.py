@@ -9,19 +9,22 @@ def get_embedding(face):
 
   return embeding[0]
 
-
 detector = MTCNN()
 
-def extract_face(filename, size = (160,160)) :
-  img = cv2.imread(filename)
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+def extract_face(file):
+    img = Image.open(file).convert("RGB")
+    pixels = np.asarray(img)
 
-  results = detector.detect_faces(img)
+    results = detector.detect_faces(pixels)
+    if len(results) == 0:
+        return None
 
-  if len (results) == 0 :
-    return None
-  x1, y1, w, h = results[0]['box']
-  x1, y1 = abs(x1), abs(y1)
-  face = img[y1:y1+h, x1:x1+w]
-  face = cv2.resize(face, size)
-  return face
+    x1, y1, w, h = results[0]["box"]
+    x1, y1 = abs(x1), abs(y1)
+    x2, y2 = x1 + w, y1 + h
+
+    face = pixels[y1:y2, x1:x2]
+    face = Image.fromarray(face).resize((160, 160))
+    return np.asarray(face)
+
+
