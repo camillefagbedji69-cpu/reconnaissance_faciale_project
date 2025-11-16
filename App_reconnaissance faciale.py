@@ -1,7 +1,7 @@
 import streamlit as st 
 import numpy as np 
 from PIL import Image
-import pickle 
+from joblib import load 
 
 ##Affichage du dashboard 
 
@@ -9,7 +9,7 @@ st.title('Démo de reconnaissance faciale')
 
 ##chargement du modèle
 
-model = pickle.load(open("model.pkl", "rb"))
+model = load('model.joblib')
 
 ## Chargement du fichier
 
@@ -30,4 +30,5 @@ if uploaded_file is not None :
     with st.spinner('Prédiction en cours...'):
         prediction = model.predict(img_vector)
     
+
 st.success(f"La personne reconnue est : {prediction[0]}")
