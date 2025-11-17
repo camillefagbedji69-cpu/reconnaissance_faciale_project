@@ -20,7 +20,7 @@ uploaded_file = st.file_uploader("Télécharger une image", type = ['jpeg', 'jpg
 
 if uploaded_file is not None : 
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption = "Image téléchargée", use_column_width= True)
+    st.image(image, caption = "Image téléchargée", width= 50)
 
 
     st.write("Traitement en cours....")
@@ -31,6 +31,7 @@ if uploaded_file is not None :
     with st.spinner('Prédiction en cours...'):
         prediction = model.predict([test_emb])
         st.success(f"La personne reconnue est : {prediction[0]}")
+
 
 
 
