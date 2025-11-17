@@ -26,11 +26,12 @@ if uploaded_file is not None :
     st.write("Traitement en cours....")
     test_face = extract_face(uploaded_file)
     test_emb = get_embedding(test_face)
-    pred = model.predict([test_emb])
+   
 
     with st.spinner('Prédiction en cours...'):
-        prediction = model.predict(img_vector)
+         prediction = model.predict([test_emb])
         st.success(f"La personne reconnue est : {prediction[0]}")
+
 
 
 
