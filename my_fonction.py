@@ -1,5 +1,6 @@
 from mtcnn import MTCNN
 from keras_facenet import FaceNet
+from PIL import Image
 
 def get_embedding(face):
   embedder = FaceNet()
@@ -26,5 +27,6 @@ def extract_face(file):
     face = pixels[y1:y2, x1:x2]
     face = Image.fromarray(face).resize((160, 160))
     return np.asarray(face)
+
 
 
