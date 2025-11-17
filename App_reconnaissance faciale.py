@@ -20,20 +20,18 @@ uploaded_file = st.file_uploader("Télécharger une image", type = ['jpeg', 'jpg
 
 if uploaded_file is not None : 
     image = Image.open(uploaded_file).convert("RGB")
-    # Sauvegarde dans un fichier temporaire
-    temp_path = "temp.jpg"
-    image.save(temp_path)
     st.image(image, caption = "Image téléchargée", use_column_width= True)
 
 
     st.write("Traitement en cours....")
-    test_face = extract_face(temp_path)
+    test_face = extract_face(uploaded_file)
     test_emb = get_embedding(test_face)
     pred = model.predict([test_emb])
 
     with st.spinner('Prédiction en cours...'):
         prediction = model.predict(img_vector)
         st.success(f"La personne reconnue est : {prediction[0]}")
+
 
 
 
